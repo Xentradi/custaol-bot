@@ -11,11 +11,11 @@ module.exports = {
         
         // alcohol detector
 
-        let words = message.content.trim().split(/ +/g);
-        if (findOne(words.toLowerCase(), goodDrinks)) {
+        let words = message.content.toLowerCase().trim().split(/ +/g);
+        if (findOne(words, goodDrinks)) {
             // Good alcohols
             return message.channel.send('You are having drink? ' + client.user.username + ' would like one as well.');
-        } else if (findOne(words.toLowerCase(), badDrinks)) {
+        } else if (findOne(words, badDrinks)) {
             // Yucky alcohols
             return message.channel.send('How you drink that? Makes ' + client.user.username + ' sick like picture of your mother.');
         }
