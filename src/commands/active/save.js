@@ -3,7 +3,7 @@ const chance = require('chance').Chance();
 
 module.exports = {
   name: 'save',
-  description: '`/save [modifier]` Returns a save value + your modifier leave modifier blank for 0',
+  description: '`/save [modifier]` Returns a save value + modifier leave modifier blank for 0',
   execute: async (client, message, args) => {
     //client.functions.commandReact(message, 1);
 
@@ -14,7 +14,7 @@ module.exports = {
     const mean = Math.floor(sides*0.85);
     const variance = 7;
 
-    const roll = _weightedRandom(1, sides, mean, variance);
+    const roll = _weightedRandom(5, sides, mean, variance);
     let result = Number(roll) + modifier;
     if (roll === 20) result = 'NAT 20!';
     if (roll <= 1)  result = Number(result) + modifier + 1;
