@@ -3,7 +3,8 @@ const chance = require('chance').Chance();
 
 module.exports = {
   name: 'roll',
-  description: '``roll x y` where `x = number` of dice & `y = number of sides on dice` ',
+  description: 'Rolls <X> number of <Y> sided dice and prints the values.',
+  usage: 'roll <X> <Y>',
   execute: async (client, message, args) => {
     if (!args[0] || isNaN(args[0]) || !args[1] || isNaN(args[1])) message.reply(this.description);
     //client.functions.commandReact(message, 1);

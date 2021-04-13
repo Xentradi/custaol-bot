@@ -3,7 +3,8 @@ const chance = require('chance').Chance();
 
 module.exports = {
   name: 'save',
-  description: '`/save [modifier]` Returns a save value + modifier leave modifier blank for 0',
+  description: 'Rolls a d20 and sends you the roll + your provided save modifier. If you do not provide a modifier it assumes 0.',
+  usage: 'save [SaveModifier]',
   execute: async (client, message, args) => {
     //client.functions.commandReact(message, 1);
 
