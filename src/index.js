@@ -19,10 +19,9 @@ for (const file of eventFiles) {
         delete require.cache[require.resolve(`./events/${file}`)];
         continue;
     }
-    let eventName = event.name;
     try {
-        client.on(eventName, event.execute.bind(null, client));
-        console.log(`Event bound: ${eventName}`);
+        client.on(event.name, event.execute.bind(null, client));
+        console.log(`Event bound: ${event.name}`);
         delete require.cache[require.resolve(`./events/${file}`)];
     }
     catch (err) { console.error(err); }
