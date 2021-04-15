@@ -21,18 +21,22 @@ module.exports = {
         }
         
         
-        // commandy things
+        /**
+         * Command Handler
+         */
+
+        // Ignore messages not starting with the prefix
         if (!message.content.startsWith(client.prefix)) return;
 
-        const arguements = message.content
+        const arguments = message.content
             .slice(client.prefix.length)
             .trim()
             .split(/ +/g);
-        const command = arguements.shift().toLowerCase();
+        const command = arguments.shift().toLowerCase();
 
         if (!client.commands.has(command)) return;
         try {
-            client.commands.get(command).execute(client, message, arguements);
+            client.commands.get(command).execute(client, message, arguments);
         }
         catch (err) { console.error(err); }
     }
