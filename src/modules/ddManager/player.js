@@ -1,8 +1,9 @@
 class Player {
-    constructor(name, id = null) {
+    constructor(name, id) {
         this.name = name;
         this.snowflake = id;
     }
+
 
     setName(name) {
         this.name = name;
@@ -12,11 +13,19 @@ class Player {
         this.id = id;
     }
 
+    setActiveCharacter(character) {
+        this.activeCharacter = character;
+    }
+
     getName() {
         return this.name;
     }
 
     getId() {
         return this.id;
+    }
+
+    getActiveCharacter() {
+        return this.activeCharacter;
     }
 }
