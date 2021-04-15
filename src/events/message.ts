@@ -1,3 +1,5 @@
+import { Client, Message } from "discord.js";
+
 const keywords = require('../../config.json').keywords;
 const goodDrinks = require('../../config.json').goodDrinks;
 const badDrinks = require('../../config.json').badDrinks;
@@ -5,7 +7,7 @@ const badDrinks = require('../../config.json').badDrinks;
 module.exports = {
     name: 'message',
     description: 'Handle message events',
-    execute: async (client, message) => {
+    execute: async (client: Client, message: Message) => {
         if (message.author.bot) return;
         if (message.content.toLowerCase() === '?help') message.reply(`Dial ${client.prefix} for ${client.user.username}`);
         
@@ -21,18 +23,18 @@ module.exports = {
         }
         
         
-        // commandy things
+        // Handle Commands
         if (!message.content.startsWith(client.prefix)) return;
 
-        const arguements = message.content
+        const args = message.content
             .slice(client.prefix.length)
             .trim()
             .split(/ +/g);
-        const command = arguements.shift().toLowerCase();
+        const command = args.shift().toLowerCase();
 
         if (!client.commands.has(command)) return;
         try {
-            client.commands.get(command).execute(client, message, arguements);
+            client.commands.get(command).execute(client, message, args);
         }
         catch (err) { console.error(err); }
     }
