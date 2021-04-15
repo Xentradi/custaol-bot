@@ -1,11 +1,19 @@
-
+'use strict';
 
 module.exports =  class Character {
-    constructor(name, level = 1, race = 'Human', player = null) {
+    constructor(name, level = 1, race = 'Human') {
         this.name = name;
         this.level = level;
         this.race = race;
-        this.player = player;
+        this.class = {};
+        this.stats = {
+            "strength": 8,
+            "dexterity": 8,
+            "constitution": 8,
+            "intelligence": 8,
+            "wisdom": 8,
+            "charisma": 8
+        };
     }
 
     getName() {
@@ -18,10 +26,6 @@ module.exports =  class Character {
 
     getRace() {
         return this.race;
-    }
-
-    getPlayer() {
-        return this.player
     }
 
     getStats() {
@@ -60,22 +64,19 @@ module.exports =  class Character {
         return Math.ceil(1 + (this.level / 4));
     }
 
-    // Setters
 
+    // Setters
+    
     setName(name) {
         this.name = name;
     }
 
-    setName(level) {
+    setLevel(level) {
         this.name = level;
     }
 
-    setName(race) {
+    setRace(race) {
         this.name = race;
-    }
-
-    setName(player) {
-        this.name = player;
     }
 
     setStats(strength, dexterity, constitution, intelligence, wisdom, charisma) {
