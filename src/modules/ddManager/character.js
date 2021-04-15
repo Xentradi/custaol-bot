@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports =  class Character {
+module.exports = class Character {
     constructor(name, level = 1, race = 'Human') {
         this.name = name;
         this.level = level;
