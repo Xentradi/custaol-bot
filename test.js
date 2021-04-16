@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 
-const dbUri =
-    'mongodb://x3n:vcW2K8IQC4TnvxkFaKArjj52jcqguE5vNzT0SOb8bQ4p7Dos7iQRqSqsAqznfDQAzceZEhwSoqMP9k1GP7K7Mg==@x3n.mongo.cosmos.azure.com:10255/?ssl=true&retrywrites=false&maxIdleTimeMS=120000&appName=@x3n@';
+const dbUri = process.env.MONGO_URI;
 const mongooseOptions = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
