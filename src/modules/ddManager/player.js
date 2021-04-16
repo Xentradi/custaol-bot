@@ -4,7 +4,6 @@ class Player {
         this.snowflake = id;
     }
 
-
     setName(name) {
         this.name = name;
     }

@@ -1,18 +1,18 @@
 'use strict';
 
-module.exports =  class Character {
+module.exports = class Character {
     constructor(name, level = 1, race = 'Human') {
         this.name = name;
         this.level = level;
         this.race = race;
         this.class = {};
         this.stats = {
-            "strength": 8,
-            "dexterity": 8,
-            "constitution": 8,
-            "intelligence": 8,
-            "wisdom": 8,
-            "charisma": 8
+            strength: 8,
+            dexterity: 8,
+            constitution: 8,
+            intelligence: 8,
+            wisdom: 8,
+            charisma: 8,
         };
     }
 
@@ -61,12 +61,11 @@ module.exports =  class Character {
     }
 
     getProficiency() {
-        return Math.ceil(1 + (this.level / 4));
+        return Math.ceil(1 + this.level / 4);
     }
 
-
     // Setters
-    
+
     setName(name) {
         this.name = name;
     }
@@ -79,15 +78,21 @@ module.exports =  class Character {
         this.name = race;
     }
 
-    setStats(strength, dexterity, constitution, intelligence, wisdom, charisma) {
+    setStats(
+        strength,
+        dexterity,
+        constitution,
+        intelligence,
+        wisdom,
+        charisma
+    ) {
         this.stats = {
-            "strength": strength,
-            "dexterity": dexterity,
-            "constitution": constitution,
-            "intelligence": intelligence,
-            "wisdom": wisdom,
-            "charisma": charisma
-        }
+            strength: strength,
+            dexterity: dexterity,
+            constitution: constitution,
+            intelligence: intelligence,
+            wisdom: wisdom,
+            charisma: charisma,
+        };
     }
-
-}
+};
