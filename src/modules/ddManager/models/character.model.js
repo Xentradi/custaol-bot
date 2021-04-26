@@ -1,10 +1,12 @@
 const mongoose = require('mongoose')
 
-const playerCharacterSchema = new mongoose.Schema({
+const characterSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
     },
+    home: String,
+    location: String,
     level: {
         type: Number,
         default: 1
@@ -17,8 +19,12 @@ const playerCharacterSchema = new mongoose.Schema({
     stats: {
         type: Map,
         of: Number
+    },
+    player: {
+        type: String,
+        required: false
     }
 
-})
+}, options);
 
-module.exports = mongoose.model('playerCharacter', playerCharacterSchema);
+module.exports = mongoose.model('Character', characterSchema);
