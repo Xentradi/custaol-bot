@@ -10,6 +10,10 @@ const playerSchema = new mongoose.Schema({
         required: true
     },
     discordId: String,
+    activeCharacter: {
+        type: ObjectId,
+        required: false
+    },
 }, options);
 
 module.exports = mongoose.model('Player', playerSchema);

@@ -1,5 +1,9 @@
 const mongoose = require('mongoose')
 
+const options = {
+    collection: 'characters'
+}
+
 const characterSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -21,7 +25,7 @@ const characterSchema = new mongoose.Schema({
         of: Number
     },
     player: {
-        type: String,
+        type: ObjectId,
         required: false
     }
 
