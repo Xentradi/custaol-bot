@@ -18,6 +18,7 @@
     },
     "homepage": "https://github.com/Xentradi/custaol-bot#readme",
     "dependencies": {
+        "@types/chance": "^1.1.1",
         "chance": "^1.1.7",
         "discord.js": "^12.5.3",
         "dotenv": "^8.6.0",

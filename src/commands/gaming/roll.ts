@@ -1,12 +1,13 @@
 import { Client, Message } from "discord.js";
+const chance = require('chance').Chance();
 
 module.exports = {
     name: 'roll',
-    description: 'Rolls <X> number of <Y> sided dice and prints the values.',
-    usage: 'roll <X> <Y>',
-    execute: async (client:Client, message:Message, args:any[]) => {
+    description: 'Rolls <X>d<Y> sided dice and prints the values.',
+    usage: '<X>d<Y>',
+    async execute(client:Client, message:Message, args:any[]) {
         if (!args[0] || isNaN(args[0]) || !args[1] || isNaN(args[1]))
-            return message.reply(execute);
+            return message.reply(this.description);
         //client.functions.commandReact(message, 1);
 
         const dice = args[0];
@@ -27,17 +28,17 @@ module.exports = {
 /**
  * Generate random num with weighted chance from min to max parameters.
  * @param {integer} min Minimum value
- * @param {integer} max Maxiumum value
+ * @param {integer} max Maximum value
  * @param {integer} mean Most likely number to appear
  * @param {integer} variance Higher variance reduces randomness
  * @return {integer}
  */
-function _weightedRandom(min, max, mean, variance) {
-    const probablity = [];
+function _weightedRandom(min:number, max:number, mean:number, variance:number) {
+    const probability = [];
     const sequence = [];
     for (let i = min; i < max; i++) {
-        probablity.push(Math.pow(max - Math.abs(mean - i), variance));
+        probability.push(Math.pow(max - Math.abs(mean - i), variance));
         sequence.push(i);
     }
-    return chance.weighted(sequence, probablity);
+    return chance.weighted(sequence, probability);
 }

@@ -1,10 +1,11 @@
 import { Client } from "discord.js";
+import { logger } from "../module/logger";
 
 module.exports = {
     name: 'ready',
     description: 'Function to perform when the "ready" event is received',
     execute: async (client:Client) => {
-        console.log(
+        logger.info(
             `Connected as ${client.user?.tag}.\ Connected to ${client.guilds.cache.size} servers.`
         );
     },

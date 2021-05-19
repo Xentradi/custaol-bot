@@ -40,7 +40,7 @@ for (const folder of commandFolders) {
     const commandFiles = readdirSync(`${commandsPath}/${folder}`).filter(file => file.endsWith('.js'));
     for (const file of commandFiles) {
         const command = require(`${commandsPath}/${folder}/${file}`);
-        if (!command.execute.length) {
+        if(command.name === undefined) {
             logger.warn(`Skipping empty file: ${commandsPath}/active/${file}`);
             delete require.cache[require.resolve(`${commandsPath}/active/${file}`)];
             continue;
