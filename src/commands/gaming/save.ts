@@ -1,15 +1,14 @@
-'use strict';
+import { Client, Message } from "discord.js";
 const chance = require('chance').Chance();
 
 module.exports = {
     name: 'save',
     description:
         'Rolls a d20 and sends you the roll + your provided save modifier. If you do not provide a modifier it assumes 0.',
-    usage: 'save [SaveModifier]',
-    execute: async (client, message, args) => {
+    usage: '[SaveModifier]',
+    async execute(client:Client, message:Message, args:any[]) {
         //client.functions.commandReact(message, 1);
-
-        const modifier = Number(args[0]) || 0;
+        let modifier = Number(args[0]) || 0;
         if (modifier < 0) modifier = 0;
         const dice = 1;
         const sides = 21;
@@ -18,10 +17,10 @@ module.exports = {
 
         const roll = _weightedRandom(5, sides, mean, variance);
         let result = Number(roll) + modifier;
-        if (roll === 20) result = 'NAT 20!';
-        if (roll <= 1) result = Number(result) + modifier + 1;
+        let output = String(result);
+        if (roll === 20) output = 'NAT 20!';
 
-        const newMsg = `${result}`;
+        const newMsg = `${output}`;
         return message.channel.send(newMsg);
     },
 };
@@ -29,17 +28,17 @@ module.exports = {
 /**
  * Generate random num with weighted chance from min to max parameters.
  * @param {integer} min Minimum value
- * @param {integer} max Maxiumum value
+ * @param {integer} max Maximum value
  * @param {integer} mean Most likely number to appear
  * @param {integer} variance Higher variance reduces randomness
  * @return {integer}
  */
-function _weightedRandom(min, max, mean, variance) {
-    const probablity = [];
+ function _weightedRandom(min:number, max:number, mean:number, variance:number) {
+    const probability = [];
     const sequence = [];
     for (let i = min; i < max; i++) {
-        probablity.push(Math.pow(max - Math.abs(mean - i), variance));
+        probability.push(Math.pow(max - Math.abs(mean - i), variance));
         sequence.push(i);
     }
-    return chance.weighted(sequence, probablity);
+    return chance.weighted(sequence, probability);
 }

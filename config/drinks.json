@@ -1,0 +1,14 @@
+{
+    "allDrinks": [
+        "crown", 
+        "crown royal", 
+        "tequila", 
+        "whiskey", 
+        "malort", 
+        "malört", 
+        "wine", 
+        "schnapps"
+    ],
+    "goodDrinks": ["crown", "crown royal", "tequila", "whiskey"],
+    "badDrinks": ["malort", "malört", "wine", "schnapps"]
+}
