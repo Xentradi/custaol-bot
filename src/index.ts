@@ -3,7 +3,7 @@ import { BotClient } from './class/BotClient.class';
 import { ClientOptions, Collection } from 'discord.js';
 import { readdirSync } from 'fs';
 import { resolve } from 'path';
-import { logger } from './module/logger';
+import { logger } from './modules/logger';
 
 const eventsPath = resolve(__dirname, './events');
 const commandsPath = resolve(__dirname, './commands');

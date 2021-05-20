@@ -1,7 +1,7 @@
 import { Collection, Message } from 'discord.js';
 import { resolve } from 'path';
 import { BotClient } from '../class/BotClient.class';
-import { logger } from '../module/logger';
+import { logger } from '../modules/logger';
 
 const configPath = resolve(__dirname, '../../config');
 const allDrinks = require(configPath + '/drinks.json').allDrinks;
