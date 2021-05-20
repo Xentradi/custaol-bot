@@ -1,15 +1,16 @@
 require('dotenv').config();
-import { Client, ClientOptions, Collection } from "discord.js";
-import { readdirSync } from "fs";
-import { resolve } from "path";
-import { logger } from "./module/logger";
+import { BotClient } from './class/BotClient.class';
+import { ClientOptions, Collection } from 'discord.js';
+import { readdirSync } from 'fs';
+import { resolve } from 'path';
+import { logger } from './module/logger';
 
 const eventsPath = resolve(__dirname, './events');
 const commandsPath = resolve(__dirname, './commands');
-const clientOptions:ClientOptions = {disableMentions: "everyone"};
-const client = new Client(clientOptions);
+const clientOptions: ClientOptions = { disableMentions: 'everyone' };
+const client = new BotClient(clientOptions);
 
-let Commands = new Collection<any, any>();
+client.commands = new Collection<any, any>();
 
 const eventFiles = readdirSync(eventsPath).filter((file) => {
     if (file.endsWith('.ts') || file.endsWith('.js')) {
@@ -25,36 +26,31 @@ for (const file of eventFiles) {
         continue;
     }
     try {
-        client.on(event.name, event.execute.bind(null, client, Commands));
+        client.on(event.name, event.execute.bind(null, client));
         logger.info(`Event bound: ${event.name}`);
         delete require.cache[require.resolve(`${eventsPath}/${file}`)];
-    }
-    catch (err) {
+    } catch (err) {
         logger.error(err);
     }
 }
 
-
 const commandFolders = readdirSync(`${commandsPath}`);
 for (const folder of commandFolders) {
-    const commandFiles = readdirSync(`${commandsPath}/${folder}`).filter(file => file.endsWith('.js'));
+    const commandFiles = readdirSync(`${commandsPath}/${folder}`).filter((file) => file.endsWith('.js'));
     for (const file of commandFiles) {
         const command = require(`${commandsPath}/${folder}/${file}`);
-        if(command.name === undefined) {
+        if (command.name === undefined) {
             logger.warn(`Skipping empty file: ${commandsPath}/active/${file}`);
             delete require.cache[require.resolve(`${commandsPath}/active/${file}`)];
             continue;
         }
         try {
-            Commands.set(command.name, command);
+            client.commands.set(command.name, command);
             logger.info(`Command loaded: ${command.name}`);
-        }
-        catch (err) {
+        } catch (err) {
             logger.error(err);
         }
     }
 }
-
-
 
 client.login();
